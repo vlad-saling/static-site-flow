@@ -1,0 +1,29 @@
+{
+  "name": "static-site-flow",
+  "version": "1.0.0",
+  "description": "helper for static pages",
+  "main": "package jsno",
+  "scripts": {
+    "css:dev": "node-sass ./src/styles/styles.scss ./src/styles/styles.min.css",
+    "css:build": "node-sass ./src/styles/styles.scss ./build/styles/styles.min.css --output-style compressed",
+    "js": "uglifyjs-folder --harmony -x .js ./src/js -eo ./build/js/",
+    "images": "node utils/images.js",
+    "html": "html-minifier --collapse-whitespace --remove-comments --minify-js --input-dir ./src/pages/ --output-dir ./build/pages/ --file-ext html",
+    "dev": "npm run css:dev",
+    "build": "npm run css:build && npm run js && npm run images && npm run html",
+    "start": "nodemon -x npm run css:dev"
+  },
+  "author": "vlad",
+  "license": "MIT",
+  "devDependencies": {
+    "html-minifier": "^3.5.3",
+    "imagemin": "^5.3.1",
+    "imagemin-cli": "^3.0.0",
+    "imagemin-mozjpeg": "^6.0.0",
+    "imagemin-pngquant": "^5.0.1",
+    "node-sass": "^4.5.3",
+    "nodemon": "^1.11.0",
+    "uglify-es": "^3.0.28",
+    "uglifyjs-folder": "^1.2.0"
+  }
+}
